@@ -1,6 +1,13 @@
 
 
-class Windata:
+class WinData:
+
+    def __init__(self):
+        self.__ways = None
+        self.__sym_count_on_each_col = None
+        self.__win_amount = None
+        self.__pos_List = None
+        self.__symbol_name = None
 
     @property
     def symbol_name(self):
@@ -12,11 +19,11 @@ class Windata:
         self.__symbol_name = new_value
 
     @property
-    def pos_List(self):
+    def pos_list(self):
         return self.__pos_List
 
-    @pos_List.setter
-    def pos_List(self, new_value):
+    @pos_list.setter
+    def pos_list(self, new_value):
         self.__pos_List= new_value
 
 

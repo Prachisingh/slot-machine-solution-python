@@ -1,10 +1,10 @@
 from os.path import exists
 
 from GameConfiguration import GameConfiguration
-from WinData import Windata
+from WinData import WinData
 import random as rd
 
-w = Windata()
+w = WinData()
 stop_position_list = []
 slot_face =[]
 
@@ -24,7 +24,7 @@ for i in reels:
 
 
 def check_for_win_combination(sym_to_compare, slot_face):
-    win_data = Windata()
+    win_data = WinData()
     pos_list = []
     current_col = 0
     sym_count_per_col_map = {}
@@ -48,7 +48,7 @@ def check_for_win_combination(sym_to_compare, slot_face):
                 current_col = col
             pos += 5
 
-    win_data.pos_List = pos_list
+    win_data.pos_list = pos_list
     win_data.sym_count_on_each_col = sym_count_per_col_map
     win_data.symbol_name = sym_to_compare
     return win_data
@@ -59,7 +59,7 @@ def populate_win(win_data, stake):
 
     symbol_win = 0
     ways = 1
-    if pay_out is not None and win_data.sym_count_on_each_col.__len__() >= pay_out.minimumMatch:
+    if pay_out is not None and win_data.sym_count_on_each_col.__len__() >= pay_out.minimum_match:
         symbol_win = pay_out.get_win_amount(win_data.sym_count_on_each_col.__len__())
         for i in range(0, win_data.sym_count_on_each_col.__len__()):
             ways *= win_data.sym_count_on_each_col[i]
@@ -90,7 +90,7 @@ def calculate_win(slot_face, stake):
 
     print("Total wins: " + str(total_win))
     for win in win_data_list :
-        print("- Ways win " +  str(win.pos_List) + " " + win.symbol_name + " X" + str(win.sym_count_on_each_col.__len__()) + ", " + str(win.win_amount) + ", Ways: " + str(win.ways) + " ")
+        print("- Ways win " + str(win.pos_list) + " " + win.symbol_name + " X" + str(win.sym_count_on_each_col.__len__()) + ", " + str(win.win_amount) + ", Ways: " + str(win.ways) + " ")
 
 
 print("Stop Positions: " )

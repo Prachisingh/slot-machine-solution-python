@@ -1,15 +1,15 @@
 class SlotSymbolWaysPayConfig:
 
     @property
-    def minimumMatch(self):
+    def minimum_match(self):
         return self.__minimumMatch
 
     @property
     def win_amount(self):
         return self.__win_amount
 
-    def __init__(self, minimumMatch, win_amount):
-        self.__minimumMatch = minimumMatch
+    def __init__(self, minimum_match, win_amount):
+        self.__minimumMatch = minimum_match
         self.__win_amount = win_amount
 
     def get_win_amount(self, matched_columns_count):
