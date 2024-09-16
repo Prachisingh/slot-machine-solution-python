@@ -4,7 +4,6 @@ from GameConfiguration import GameConfiguration
 from WinData import WinData
 import random as rd
 
-w = WinData()
 stop_position_list = []
 slot_face =[]
 
@@ -93,8 +92,7 @@ def calculate_win(slot_face, stake):
         print("- Ways win " + str(win.pos_list) + " " + win.symbol_name + " X" + str(win.sym_count_on_each_col.__len__()) + ", " + str(win.win_amount) + ", Ways: " + str(win.ways) + " ")
 
 
-print("Stop Positions: " )
-print(stop_position_list)
+print("Stop Positions: " + str(stop_position_list) )
 print()
 print("Screen:")
 
