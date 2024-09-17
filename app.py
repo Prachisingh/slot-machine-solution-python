@@ -1,5 +1,3 @@
-from os.path import exists
-
 from GameConfiguration import GameConfiguration
 from WinData import WinData
 import random as rd
@@ -17,9 +15,9 @@ def select_reels(board_height, reel, stop_pos):
 
 for i in reels:
     stop_position = rd.randint(0, reels.get(i).__len__() - 1)  # stop position for multiple wins [3, 14, 10, 19, 13]
-    slotFaceReel = select_reels(GameConfiguration.BoardHeight, reels.get(i), stop_position)
+    slot_face_reel = select_reels(GameConfiguration.BOARD_HEIGHT, reels.get(i), stop_position)
     stop_position_list.insert(i, stop_position)
-    slot_face.insert(i, slotFaceReel)
+    slot_face.insert(i, slot_face_reel)
 
 
 def check_for_win_combination(sym_to_compare, board):
@@ -27,12 +25,12 @@ def check_for_win_combination(sym_to_compare, board):
     pos_list = []
     current_col = 0
     sym_count_per_col_map = {}
-    for col in range(0, GameConfiguration.BoardWidth):
+    for col in range(0, GameConfiguration.BOARD_WIDTH):
         sym_count_per_column = 0
         pos = col
         if col - current_col > 1:
             break
-        for row in range(0, GameConfiguration.BoardHeight):
+        for row in range(0, GameConfiguration.BOARD_HEIGHT):
             current_sym = board[col][row]
             if sym_to_compare == current_sym:
                 sym_count_per_column = sym_count_per_column +1
@@ -70,7 +68,7 @@ def populate_win(win_data, stake):
 def calculate_win(board, stake):
     win_data_list = []
     total_win = 0
-    for row in range(0, GameConfiguration.BoardHeight):
+    for row in range(0, GameConfiguration.BOARD_HEIGHT):
         sym_to_compare = board[0][row]
         exist = False
         for sym in win_data_list: # TODO
@@ -94,10 +92,10 @@ print("Stop Positions: " + str(stop_position_list) )
 print()
 print("Screen:")
 
-for row in range(0, GameConfiguration.BoardHeight):
-    for col in range(0, GameConfiguration.BoardWidth):
+for row in range(0, GameConfiguration.BOARD_HEIGHT):
+    for col in range(0, GameConfiguration.BOARD_WIDTH):
         print(slot_face.__getitem__(col).__getitem__(row), end=' ')
     print()
 
-calculate_win(slot_face, GameConfiguration.Stake)
+calculate_win(slot_face, GameConfiguration.STAKE)
 

@@ -3,9 +3,9 @@ from SlotSymbolWaysPayConfig import SlotSymbolWaysPayConfig
 
 class GameConfiguration:
 
-    Stake = 1
-    BoardHeight = 3
-    BoardWidth = 5
+    STAKE = 1
+    BOARD_HEIGHT = 3
+    BOARD_WIDTH = 5
 
     @staticmethod
     def get_pay_out():
