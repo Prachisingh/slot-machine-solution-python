@@ -10,11 +10,11 @@ reels = GameConfiguration.get_reels()
 def select_reels(board_height, reel, stop_pos):
     board_reels = []
     for i in range(0, board_height):
-        board_reels.insert(i, reel[(stop_pos + i) % reel.__len__()])
+        board_reels.insert(i, reel[(stop_pos + i) %  len(reel)])
     return board_reels
 
 for i in reels:
-    stop_position = rd.randint(0, reels.get(i).__len__() - 1)  # stop position for multiple wins [3, 14, 10, 19, 13]
+    stop_position = rd.randint(0, len(reels.get(i)) - 1)  # stop position for multiple wins [3, 14, 10, 19, 13]
     slot_face_reel = select_reels(GameConfiguration.BOARD_HEIGHT, reels.get(i), stop_position)
     stop_position_list.insert(i, stop_position)
     slot_face.insert(i, slot_face_reel)
@@ -54,9 +54,9 @@ def check_for_win_combination(sym_to_compare, board):
 def populate_win(win_data, stake):
     pay_out = GameConfiguration.get_pay_out()[win_data.symbol_name]
     ways = 1
-    if pay_out is not None and win_data.sym_count_on_each_col.__len__() >= pay_out.minimum_match:
-        symbol_win = pay_out.get_win_amount(win_data.sym_count_on_each_col.__len__())
-        for i in range(0, win_data.sym_count_on_each_col.__len__()):
+    if pay_out is not None and len(win_data.sym_count_on_each_col) >= pay_out.minimum_match:
+        symbol_win = pay_out.get_win_amount(len(win_data.sym_count_on_each_col))
+        for i in range(0, len(win_data.sym_count_on_each_col)):
             ways *= win_data.sym_count_on_each_col[i]
 
         final_win = symbol_win * ways
@@ -75,7 +75,7 @@ def calculate_win(board, stake):
             if sym.symbol_name == sym_to_compare:
                 exist = True
 
-        if win_data_list.__len__() != 0 and exist:
+        if len(win_data_list) != 0 and exist:
             continue
         win_data = check_for_win_combination(sym_to_compare, board)
         populate_win(win_data, stake)
@@ -85,7 +85,7 @@ def calculate_win(board, stake):
 
     print("Total wins: " + str(total_win))
     for win in win_data_list :
-        print("- Ways win " + str(win.pos_list) + " " + win.symbol_name + " X" + str(win.sym_count_on_each_col.__len__()) + ", " + str(win.win_amount) + ", Ways: " + str(win.ways) + " ")
+        print("- Ways win " + str(win.pos_list) + " " + win.symbol_name + " X" + str(len(win.sym_count_on_each_col)) + ", " + str(win.win_amount) + ", Ways: " + str(win.ways) + " ")
 
 
 print("Stop Positions: " + str(stop_position_list) )
